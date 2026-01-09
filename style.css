@@ -1,110 +1,111 @@
 :root {
-    /* Background Color */
-    --bg-primary-color : #161616;
-    --bg-snake-color : #3c903f;
-    --bg-food-color : #f44336;
+  /* Background Color */
+  --bg-primary-color: #161616;
+  --bg-snake-color: #3c903f;
+  --bg-food-color: #f44336;
 
-    /* Text Color */
-    --txt-primary-color : #f1f1f1;
+  /* Text Color */
+  --txt-primary-color: #f1f1f1;
 
-    /* Spacing Variables */
-    --space-xs : 4px;
-    --space-sm : 8px;
-    --space-md : 16px;
-    --space-lg : 20px;
-    --space-xl : 24px;
-    --space-2xl : 32px;
-    --space-3xl : 40px;
+  /* Spacing Variables */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 40px;
 
-    /* Border Color */
-    --border-primary-color : #3b3737;
+  /* Border Color */
+  --border-primary-color: #3b3737;
 
-    /* Border Radius Variables */
-    --brdr-xs : 5px;
-    --brdr-sm : 10px;
-    --brdr-md : 15px;
-    --brdr-lg : 20px;
-    --brdr-xl : 25px;
-    --brdr-2xl : 30px;
-    --brdr-3xl : 35px;
+  /* Border Radius Variables */
+  --brdr-xs: 5px;
+  --brdr-sm: 10px;
+  --brdr-md: 15px;
+  --brdr-lg: 20px;
+  --brdr-xl: 25px;
+  --brdr-2xl: 30px;
+  --brdr-3xl: 35px;
 }
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'helvetica neue';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "helvetica neue";
 }
-html, body {
-    height: 100%;
-    width: 100%;
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
 main {
-    height: 100%;
-    width: 100%;
-    background-color: var(--bg-primary-color);
-    color: var(--txt-primary-color);
-    padding: var(--space-3xl) calc(2 * var(--space-3xl));
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-primary-color);
+  color: var(--txt-primary-color);
+  padding: var(--space-3xl) calc(2 * var(--space-3xl));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
 }
 main .info-area {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 main .info-area .info-box {
-    border : 2px solid var(--border-primary-color);
-    padding: var(--space-md) var(--space-lg);
-    border-radius: var(--brdr-md);
+  border: 2px solid var(--border-primary-color);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--brdr-md);
 }
 main .play-area {
-    border: 1px solid var(--border-primary-color);
-    flex-grow: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+  border: 1px solid var(--border-primary-color);
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
 }
 main .play-area .cell {
-    height: 50px;
-    width: 50px;
-    border: 1px solid var(--border-primary-color);
+  height: 50px;
+  width: 50px;
+  border: 1px solid var(--border-primary-color);
 }
 .btn {
-    padding: var(--space-sm) var(--space-md);
-    border: none;
-    border-radius: var(--brdr-md);
-    cursor: pointer;
-    font-size: 1.15rem;
-    transition: all 0.3s ease;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  border-radius: var(--brdr-md);
+  cursor: pointer;
+  font-size: 1.15rem;
+  transition: all 0.3s ease;
 }
 .btn:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 .snake {
-    background-color: var(--bg-snake-color);
+  background-color: var(--bg-snake-color);
 }
 .food {
-    background-color: var(--bg-food-color);
+  background-color: var(--bg-food-color);
 }
 .modal {
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(52, 49, 49, 0.724);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(52, 49, 49, 0.724);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .modal .start-game,
 .modal .restart-game {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
 }
 .modal .restart-game {
-    display: none;
+  display: none;
 }
