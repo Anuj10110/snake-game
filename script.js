@@ -5,9 +5,18 @@ const modal = document.querySelector('.modal');
 const startModal = document.querySelector('.start-game');
 const restartModal = document.querySelector('.restart-game');
 
+const highScoreElement = document.querySelector('#high-score');
+const currentScoreElement = document.querySelector('#current-score');
+const timeElement = document.querySelector('#time');
 
 const cellHeight = 50;
 const cellWidth = 50;
+
+let highScore = localStorage.getItem('highScore') || 0;
+let currentScore = 0;
+let time = `00:00`;
+
+highScoreElement.innerHTML = highScore;
 
 const rows = Math.floor(playArea.clientHeight / cellHeight);
 const cols = Math.floor(playArea.clientWidth / cellWidth);
@@ -22,6 +31,7 @@ let food = {
 
 let direction = 'left';
 
+let timerId = null; 
 let intervalId = null;
 
 const board = [];
@@ -57,6 +67,8 @@ function render() {
     snake.pop();
 
     if (head.row === food.row && head.col === food.col) {
+        currentScore += 10;
+        currentScoreElement.innerHTML = currentScore;
         board[`${food.row}-${food.col}`].classList.remove('food');
         food = {
                     row : Math.floor(Math.random() * rows),
@@ -64,6 +76,10 @@ function render() {
                 };
         board[`${food.row}-${food.col}`].classList.add('food');
         snake.unshift(head);
+        if (currentScore > highScore) {
+            highScore = currentScore;
+            localStorage.setItem('highScore', highScore.toString());
+        }
     }
 
     if (head.row < 0 || head.row >= rows || head.col < 0 || head.col >= cols) {
@@ -87,6 +103,16 @@ startButton.addEventListener('click', () => {
     intervalId = setInterval(() => {
         render();
     }, 300);
+    timerId = setInterval(() => {
+        let [mins, secs] = time.split(':').map(Number);
+        secs++;
+        if (secs === 60) {
+            mins++;
+            secs = 0;
+        }
+        time = `${mins}:${secs}`;
+        timeElement.innerHTML = time;
+    }, 1000);
 })
 
 restartButton.addEventListener('click', restartGame);
@@ -101,6 +127,12 @@ function restartGame() {
                 col : Math.floor(Math.random() * cols)
             };
     direction = 'down';
+    currentScore = 0;
+    time = `00:00`;
+    currentScoreElement.innerHTML = currentScore;
+    timeElement.innerHTML = time;
+    highScoreElement.innerHTML = highScore;
+    currentScoreElement.innerHTML = currentScore;
     intervalId = setInterval(() => {
         render();
     }, 300);
