@@ -1,4 +1,10 @@
 const playArea = document.querySelector('.play-area');
+const startButton = document.querySelector('.btn-start');
+const restartButton = document.querySelector('.btn-restart');
+const modal = document.querySelector('.modal');
+const startModal = document.querySelector('.start-game');
+const restartModal = document.querySelector('.restart-game');
+
 
 const cellHeight = 50;
 const cellWidth = 50;
@@ -6,10 +12,8 @@ const cellWidth = 50;
 const rows = Math.floor(playArea.clientHeight / cellHeight);
 const cols = Math.floor(playArea.clientWidth / cellWidth);
 
-const snake = [
+let snake = [
     {row : 5, col : 10},
-    {row : 5, col : 11},
-    {row : 5, col : 12},
 ];
 let food = {
     row : Math.floor(Math.random() * rows),
@@ -62,6 +66,14 @@ function render() {
         snake.unshift(head);
     }
 
+    if (head.row < 0 || head.row >= rows || head.col < 0 || head.col >= cols) {
+        clearInterval(intervalId);
+        modal.style.display = 'flex';
+        restartModal.style.display = 'flex';
+        startModal.style.display = 'none';
+        return;
+    }
+
     board[`${food.row}-${food.col}`].classList.add('food');
 
     snake.forEach(segment => {
@@ -69,9 +81,30 @@ function render() {
     })
 }
 
-intervalId = setInterval(() => {
-    render();
-}, 300);
+startButton.addEventListener('click', () => {
+    clearInterval(intervalId);
+    modal.style.display = 'none';
+    intervalId = setInterval(() => {
+        render();
+    }, 300);
+})
+
+restartButton.addEventListener('click', restartGame);
+
+function restartGame() {
+    clearInterval(intervalId);
+    modal.style.display = 'none';
+    board[`${food.row}-${food.col}`].classList.remove('food');
+    snake = [{row : 5, col : 10}];
+    food = {
+                row : Math.floor(Math.random() * rows),
+                col : Math.floor(Math.random() * cols)
+            };
+    direction = 'down';
+    intervalId = setInterval(() => {
+        render();
+    }, 300);
+}
 
 addEventListener('keydown', event => {
     if (event.key === 'ArrowRight') {
