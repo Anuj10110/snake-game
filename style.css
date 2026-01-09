@@ -1,0 +1,77 @@
+:root {
+    /* Background Color */
+    --bg-primary-color : #161616;
+    --bg-snake-color : #4caf50;
+    --bg-food-color : #f44336;
+
+    /* Text Color */
+    --txt-primary-color : #f1f1f1;
+
+    /* Spacing Variables */
+    --space-xs : 4px;
+    --space-sm : 8px;
+    --space-md : 16px;
+    --space-lg : 20px;
+    --space-xl : 24px;
+    --space-2xl : 32px;
+    --space-3xl : 40px;
+
+    /* Border Color */
+    --border-primary-color : #3b3737;
+
+    /* Border Radius Variables */
+    --brdr-xs : 5px;
+    --brdr-sm : 10px;
+    --brdr-md : 15px;
+    --brdr-lg : 20px;
+    --brdr-xl : 25px;
+    --brdr-2xl : 30px;
+    --brdr-3xl : 35px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'helvetica neue';
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+main {
+    height: 100%;
+    width: 100%;
+    background-color: var(--bg-primary-color);
+    color: var(--txt-primary-color);
+    padding: var(--space-3xl) calc(2 * var(--space-3xl));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+main .info-area {
+    display: flex;
+    justify-content: space-between;
+}
+main .info-area .info-box {
+    border : 2px solid var(--border-primary-color);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--brdr-md);
+}
+main .play-area {
+    border: 1px solid var(--border-primary-color);
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+}
+main .play-area .cell {
+    height: 50px;
+    width: 50px;
+    border: 1px solid var(--border-primary-color);
+}
+.snake {
+    background-color: var(--bg-snake-color);
+}
+.food {
+    background-color: var(--bg-food-color);
+}
